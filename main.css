@@ -2,20 +2,14 @@ body {
   display: grid;
   place-items: center;
 }
-
 h1 {
   color: slateblue;
 }
-
 table,
 th,
 td {
   border: 0.5px solid grey;
   border-collapse: collapse;
-}
-
-th,
-td {
   text-align: center;
   padding: 1rem;
 }
