@@ -1,8 +1,14 @@
 body {
   display: grid;
   place-items: center;
+  text-align: center;
 }
 
 h1 {
   color: slateblue;
+}
+
+td,
+th {
+  padding: 1rem;
 }
