@@ -8,7 +8,7 @@ h1 {
   color: slateblue;
 }
 
-td,
-th {
+table td,
+table th {
   padding: 1rem;
 }
