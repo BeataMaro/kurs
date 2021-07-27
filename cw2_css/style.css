@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   background-color: tomato;
   background-image: linear-gradient(
@@ -16,35 +15,29 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
 html {
   font-family: sans-serif;
   text-align: center;
 }
-
 h1 {
   color: whitesmoke;
   letter-spacing: 1px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
   margin: 2rem auto;
 }
-
 .gifs {
   display: flex;
   justify-content: space-evenly;
   margin: 2rem auto;
 }
-
 .gifs div {
   border: 6px double #63ca14;
   border-radius: 20px;
   width: 20%;
 }
-
 .gifs div img {
   max-width: 100%;
 }
-
 .content {
   width: 70vw;
   margin: 2rem auto;
@@ -54,18 +47,15 @@ h1 {
   border: 3px solid black;
   border-radius: 14px;
 }
-
 .content div {
   background-color: whitesmoke;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   padding: 1rem;
   border-radius: 10px;
 }
-
 .content img {
   max-width: 100%;
 }
-
 footer {
   width: 100%;
   background-color: black;
