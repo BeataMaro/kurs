@@ -127,11 +127,15 @@ footer a {
     display: block;
   }
   ul {
-    width: 90%;
+    width: 100%;
     justify-content: space-around;
     margin-left: 1rem;
   }
   ul li {
     font-size: 0.8rem;
+  }
+
+  ol li {
+    width: 60%;
   }
 }
