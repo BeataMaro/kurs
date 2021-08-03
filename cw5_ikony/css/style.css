@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color: whitesmoke;
+  font-family: "Poppins", sans-serif;
+  min-height: 150vh;
+}
+
+/* Nav & Footer */
+
+h1 {
+  margin: 0 2rem 0;
+  letter-spacing: 2px;
+}
+
+nav,
+footer {
+  background: #24c6dc;
+  background: linear-gradient(to right, #514a9d, #24c6dc);
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  height: 10vh;
+}
+
+footer {
+  height: 8vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-left: 2rem;
+}
+
+/* Icons */
+.grid {
+  margin: 6px;
+}
+.grid a {
+  text-decoration: none;
+  color: inherit;
+  background-color: #ef622c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  padding: 1rem 0;
+  transition: 0.4s ease-in;
+  cursor: pointer;
+}
+
+a:hover {
+  background-color: orangered;
+  color: whitesmoke;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  transform: scale(1.01);
+}
+
+.icon {
+  font-size: 4rem;
+}
+
+a b {
+  font-size: 2rem;
+}
+
+.grid a:nth-child(1) {
+  grid-area: a1;
+}
+.grid a:nth-child(2) {
+  grid-area: a2;
+}
+.grid a:nth-child(3) {
+  grid-area: a3;
+}
+.grid a:nth-child(4) {
+  grid-area: a4;
+}
+.grid a:nth-child(5) {
+  grid-area: a5;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-areas:
+      "a4 a2 a5"
+      "a1 a3 a5";
+
+    gap: 6px;
+  }
+  .grid a {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid {
+    width: 70vw;
+    margin: 6px auto;
+    grid-template-areas:
+      "a1 . a2 a3"
+      "a4 a5 . a3";
+  }
+}
