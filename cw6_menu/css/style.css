@@ -33,12 +33,13 @@ p {
 main .left {
   flex: 4;
   padding: 1rem 2rem;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 main .right {
   flex: 1;
   padding: 1rem 2rem;
   background-color: rgb(238, 239, 246);
+  margin-bottom: 4rem;
 }
 nav {
   position: sticky;
@@ -66,11 +67,10 @@ li {
 } */
 
 ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
   margin-left: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  /* width: 65%; */
 }
 
 /* Ukryj podmenu */
@@ -78,9 +78,10 @@ ol {
   display: none;
 }
 ul li {
-  flex: 1;
+  /* flex: 1; */
   cursor: pointer;
   position: relative;
+  padding: 1.5rem;
 }
 
 /* Pokaż podmenu po najechaniu myszką na li */
@@ -96,12 +97,13 @@ ol {
 ol li {
   background-color: whitesmoke;
   color: black;
-  padding: 1rem;
+  width: 100%;
+  border-bottom: 0.5px solid #ddd;
 }
 
 ol li:hover {
-  background-color: #333;
-  color: whitesmoke;
+  background-color: #ddd;
+  color: black;
 }
 
 footer {
@@ -126,6 +128,8 @@ footer a {
   }
   ul {
     width: 90%;
+    justify-content: space-around;
+    margin-left: 1rem;
   }
   ul li {
     font-size: 0.8rem;
