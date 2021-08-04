@@ -3,7 +3,7 @@ body {
   padding: 0;
   /* Background pattern from Toptal Subtle Patterns */
   background-image: url("../img/spikes.png");
-  margin: 0;
+  margin: 6rem 0;
 }
 
 html {
@@ -70,7 +70,6 @@ ul {
   margin-left: 2rem;
   display: flex;
   justify-content: space-evenly;
-  /* width: 65%; */
 }
 
 /* Ukryj podmenu */
@@ -78,7 +77,6 @@ ol {
   display: none;
 }
 ul li {
-  /* flex: 1; */
   cursor: pointer;
   position: relative;
   padding: 1.5rem;
@@ -104,6 +102,41 @@ ol li {
 ol li:hover {
   background-color: #ddd;
   color: black;
+}
+
+label {
+  display: none;
+}
+
+.comments {
+  padding: 0 2rem;
+}
+
+.comment {
+  margin-top: 3rem;
+  background-color: white;
+}
+
+.icon-user {
+  background-color: rgb(216, 231, 233);
+  padding: 6px 4px;
+  border-radius: 50%;
+}
+
+button {
+  background-color: transparent;
+  color: black;
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  outline: none;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+button:hover {
+  background-color: black;
+  color: whitesmoke;
 }
 
 footer {
