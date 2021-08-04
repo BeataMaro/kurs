@@ -10,6 +10,11 @@ body {
 html {
   font-family: "Poppins", sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .wrapper {
   max-width: 90vw;
   margin: auto;
@@ -72,6 +77,20 @@ main {
   border-bottom: 0.5px solid grey;
 }
 
+.comment {
+  background-color: white;
+  border-radius: 5px;
+}
+.comment header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment header img {
+  width: 80px;
+  border-radius: 50%;
+}
+
 aside {
   position: fixed;
   bottom: 30%;
@@ -103,5 +122,13 @@ footer {
   width: 100%;
   padding: 1rem;
   background-color: rgb(13, 37, 37);
+  font-size: 0.8rem;
   color: rgb(176, 213, 223);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer a {
+  color: skyblue;
 }
