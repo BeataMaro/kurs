@@ -41,6 +41,12 @@ main .right {
   background-color: rgb(238, 239, 246);
   margin-bottom: 4rem;
 }
+
+h1 {
+  color: transparent;
+  -webkit-text-stroke: 1px black;
+  font-size: 3rem;
+}
 nav {
   position: sticky;
   top: 0;
