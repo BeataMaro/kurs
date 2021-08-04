@@ -30,9 +30,14 @@ header .logo {
   -webkit-text-stroke: 4px #dd1515;
 }
 
+header .logo i {
+  -webkit-text-stroke: 3px #dd1515;
+}
+
 header nav {
   padding: 1rem;
   background-color: rgb(255, 255, 255);
+  border-radius: 5px 5px 0 0;
 }
 
 header nav ul {
@@ -45,6 +50,11 @@ header nav ul {
 header nav ul li {
   margin-right: 2rem;
 }
+
+.post {
+  border-radius: 0 0 5px 5px;
+}
+
 article {
   background-color: rgb(192, 224, 224);
   padding: 2rem;
@@ -62,10 +72,6 @@ article header img {
 
 img {
   max-width: 100%;
-}
-
-main {
-  background-color: white;
 }
 
 .comments,
