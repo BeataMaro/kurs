@@ -3,7 +3,7 @@ body {
   padding: 0;
   /* Background pattern from Toptal Subtle Patterns */
   background-image: url("../img/spikes.png");
-  margin: 6rem 0;
+  margin-bottom: 6rem;
 }
 
 html {
