@@ -49,6 +49,12 @@ header nav ul {
 
 header nav ul li {
   margin-right: 2rem;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+header nav ul li:hover {
+  color: rgb(89, 197, 233);
 }
 
 .post {
