@@ -22,10 +22,23 @@ a {
   color: inherit;
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #212a5d;
+}
+
+body img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 body > header h1 {
   text-transform: uppercase;
+  color: #e6eef0;
   text-align: center;
   margin: 2rem auto;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 5px orangered;
 }
 
 body > header .hero {
@@ -37,6 +50,15 @@ body > header .hero {
   padding: 2rem;
   background-color: #3f2061;
   color: #e6eef0;
+}
+
+@media (max-width: 770px) {
+  body > header .hero {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
 }
 
 body > header .hero .text {
@@ -55,49 +77,18 @@ body > header .hero .text p {
 }
 
 body > header .hero img {
-  max-width: 100%;
   height: 40vh;
 }
 
-body > section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-body > section:nth-child(2) {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-}
-
-body > section header {
-  border: 2px dashed blue;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
-body > section article {
-  border: 2px dashed yellow;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+@media (max-width: 770px) {
+  body > header .hero img {
+    max-width: 50%;
+    margin: auto;
+  }
 }
 
 body main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 1%;
-  padding: 1%;
-  padding-top: 0;
+  padding: 2rem;
 }
 
 body main .images {
@@ -124,44 +115,45 @@ body main .images div img {
 }
 
 body main div:nth-child(1) {
-  background-color: #572407;
+  background-color: #b4d7a2;
 }
 
 body main div:nth-child(2) {
-  background-color: #a3440e;
+  background-color: #86bf69;
 }
 
 body main div:nth-child(3) {
-  background-color: #ec6416;
+  background-color: #5d9640;
 }
 
 body main div:nth-child(4) {
-  background-color: #f29662;
+  background-color: #395d28;
 }
 
 body main div:nth-child(5) {
-  background-color: #f8c8ad;
+  background-color: #16240f;
 }
 
 body main div:nth-child(6) {
-  background-color: #fefaf8;
+  background-color: black;
 }
 
-body main .blog {
+body .blog {
   padding: 2rem;
+  background-color: #3f2061;
+  width: 100%;
 }
 
-body main .blog img {
+body .blog img {
   max-width: 100%;
   margin-right: 2rem;
 }
 
-body main .blog h3 {
-  text-align: center;
+body .blog h3 {
   margin: 2rem;
 }
 
-body main .blog article {
+body .blog article {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,9 +162,20 @@ body main .blog article {
           align-items: center;
 }
 
-body main .blog article p {
+@media (max-width: 770px) {
+  body .blog article {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+body .blog article p {
   color: #e6eef0;
   padding: 2rem;
+  line-height: 1.8;
+  font-weight: 300;
 }
 
 body footer {
@@ -193,7 +196,7 @@ body footer a i {
 
 body footer a i:hover {
   color: #e6eef0;
-  background-color: #3f2061;
+  background-color: orangered;
 }
 
 @media (min-width: 770px) {
@@ -234,7 +237,7 @@ body footer a i:hover {
   }
   body > section,
   body > main {
-    width: 60%;
+    width: 70%;
   }
   body > header,
   body footer {
@@ -257,7 +260,7 @@ body footer a i:hover {
   }
   body > section,
   body > main {
-    width: 40%;
+    width: 50%;
   }
   body > header,
   body footer {

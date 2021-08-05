@@ -25,6 +25,7 @@ $transition: 0.2s ease-in;
 $main: #3f2061;
 $dark: rgb(17, 16, 16);
 $textColor: rgb(230, 238, 240);
+$orange: orangered;
 
 %centered {
   display: flex;
@@ -44,11 +45,21 @@ a {
 }
 
 body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(33, 42, 93);
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
   > header {
     h1 {
       text-transform: uppercase;
+      color: $textColor;
       text-align: center;
       margin: $space auto;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 5px $orange;
     }
     .hero {
       display: flex;
@@ -57,10 +68,14 @@ body {
       background-color: $main;
       color: $textColor;
 
+      @media (max-width: 770px) {
+        flex-direction: column-reverse;
+      }
+
       .text {
         padding: $space;
         h2 {
-          color: orangered;
+          color: $orange;
           font-size: 1.8rem;
         }
 
@@ -72,35 +87,16 @@ body {
       }
 
       img {
-        max-width: 100%;
         height: 40vh;
+        @media (max-width: 770px) {
+          max-width: 50%;
+          margin: auto;
+        }
       }
     }
   }
-
-  > section {
-    display: flex;
-
-    &:nth-child(2) {
-      flex-direction: row-reverse;
-    }
-    header {
-      border: 2px dashed blue;
-      flex: 1;
-    }
-    article {
-      border: 2px dashed yellow;
-      flex: 2;
-    }
-  }
   main {
-    // border: 3px solid black;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1%;
-    padding: 1%;
-    padding-top: 0;
+    padding: $space;
 
     .images {
       display: flex;
@@ -108,7 +104,6 @@ body {
       flex-wrap: wrap;
 
       div {
-        // border: 22px dotted purple;
         width: 30%;
         height: 40vh;
         margin-top: 1%;
@@ -122,29 +117,37 @@ body {
       }
     }
 
-    @for $i from 1 through 6 {
+    @for $i from 1 to 7 {
       div:nth-child(#{$i}) {
-        background-color: lighten(rgb(12, 5, 1), 16 * $i);
+        background-color: darken(hsl(100deg, 40%, 90%), 16 * $i);
       }
     }
-    .blog {
-      padding: $space;
-      img {
-        max-width: 100%;
-        margin-right: $space;
-      }
+  }
 
-      h3 {
-        text-align: center;
-        margin: $space;
+  .blog {
+    padding: $space;
+    background-color: $main;
+    width: 100%;
+    img {
+      max-width: 100%;
+      margin-right: $space;
+    }
+
+    h3 {
+      margin: $space;
+    }
+    article {
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 770px) {
+        flex-direction: column;
       }
-      article {
-        display: flex;
-        align-items: center;
-        p {
-          color: $textColor;
-          padding: $space;
-        }
+      p {
+        color: $textColor;
+        padding: $space;
+        line-height: 1.8;
+        font-weight: 300;
       }
     }
   }
@@ -164,7 +167,7 @@ body {
 
       &:hover {
         color: $textColor;
-        background-color: $main;
+        background-color: $orange;
       }
     }
   }
@@ -173,16 +176,17 @@ body {
 //Media queries
 
 @include media(770px, 80%);
-@include media(1100px, 60%);
-@include media(1500px, 40%);
+@include media(1100px, 70%);
+@include media(1500px, 50%);
 
-//     .for {
-//       div {
-//         border: 2px dashed red;
-//         margin: 2%;
+//  .for {
+//      div {
+//        border: 2px dashed red;
+//        margin: 2%;
+//      }
+//      @for $i from 1 to 7 {
+//        div:nth-child(#{$i}) {
+//         height: 10px * $i;
 //       }
-//       @for $i from 1 to 7 {
-//         div:nth-child(#{$i}) {
-//           height: 10px * $i;
-//         }
-//       }
+//      }
+//     }
