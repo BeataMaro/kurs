@@ -121,17 +121,16 @@ body {
           width: 20vw;
           height: 20vw;
         }
-
-        img {
-          border-radius: $radius;
-          width: 350px;
-        }
       }
     }
 
     @for $i from 1 through 6 {
       div:nth-child(#{$i}) {
         background-color: darken(rgb(230, 245, 245), 16 * $i);
+        background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d#{$i}.jpg?raw=true");
+        background-repeat: no-repeat;
+        background-size: 80%;
+        background-position: center center;
       }
     }
   }

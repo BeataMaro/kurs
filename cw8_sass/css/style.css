@@ -126,33 +126,52 @@ body main .images div {
   }
 }
 
-body main .images div img {
-  border-radius: 4px;
-  width: 350px;
-}
-
 body main div:nth-child(1) {
   background-color: #acdede;
+  background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d1.jpg?raw=true");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
 }
 
 body main div:nth-child(2) {
   background-color: #71c6c6;
+  background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d2.jpg?raw=true");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
 }
 
 body main div:nth-child(3) {
   background-color: #42a4a4;
+  background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d3.jpg?raw=true");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
 }
 
 body main div:nth-child(4) {
   background-color: #2a6a6a;
+  background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d4.jpg?raw=true");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
 }
 
 body main div:nth-child(5) {
   background-color: #133030;
+  background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d5.jpg?raw=true");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
 }
 
 body main div:nth-child(6) {
   background-color: black;
+  background-image: url("https://github.com/apietryga/kurs-Front-end/blob/master/materialy/lekcja4/img/d6.jpg?raw=true");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
 }
 
 body .blog {
