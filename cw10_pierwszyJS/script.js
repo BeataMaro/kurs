@@ -37,4 +37,10 @@ for (const [idx, gif] of divs.entries()) {
     img.src = chopekInfo[idx].src;
     img.alt = chopekInfo[idx].alt;
   };
+  img.onclick = () =>
+    (document.body.style.backgroundImage = `linear-gradient(45deg,rgb(137, ${
+      idx * 21
+    }, 195) 5%,rgb( 5, ${idx * 60}, 237) 24%,rgb(${idx + 170}, 40, ${
+      idx + 210
+    }) 100%)`);
 }
