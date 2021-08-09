@@ -19,32 +19,55 @@
         margin: 10vh auto;
         position: relative;
       }
+      .wall,
+      .start,
+      .meta {
+        position: absolute;
+      }
       .wall {
         background-color: rgba(225, 0, 255, 0.198);
-        position: absolute;
+      }
+      .start {
+        background-color: green;
+      }
+      .meta {
+        background-color: slateblue;
       }
     </style>
   </head>
   <body>
     <div class="gamePlane"></div>
     <script>
-      const makeWall = (w, h, x, y) => {
+      const makeWall = (w, h, x, y, type = "wall") => {
         const wall = document.createElement("div");
         wall.style.width = `${w}vw`;
         wall.style.height = `${h}vh`;
         wall.style.marginTop = `${y}vh`;
         wall.style.marginLeft = `${x}vw`;
         wall.style.border = "4px solid tomato";
-        wall.className = "wall";
+        wall.className = type;
         const gamePlane = document.querySelector(".gamePlane");
         gamePlane.append(wall);
       };
 
-      makeWall(20, 8, 0, 0);
-      makeWall(10, 8, 0, 15);
-      makeWall(5, 30, 20, 0);
-      makeWall(5, 40, 10, 15);
-      makeWall(20, 10, 15, 45);
+      const stage = [
+        [4, 23, 0, 0, "start"],
+        [20, 8, 0, 0],
+        [10, 8, 0, 15],
+        [5, 30, 20, 0],
+        [5, 40, 10, 15],
+        [20, 10, 15, 45],
+        [10, 13, 25, 17],
+        [5, 38, 30, 17, "meta"],
+      ];
+
+      const makeStage = (stage) => {
+        for (const block of stage) {
+          makeWall(block[0], block[1], block[2], block[3], block[4]);
+        }
+      };
+
+      makeStage(stage);
     </script>
   </body>
 </html>
