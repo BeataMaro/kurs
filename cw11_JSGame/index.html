@@ -32,6 +32,27 @@
       .meta {
         background-color: slateblue;
       }
+      .lives,
+      .time {
+        background-color: rgb(112, 223, 155);
+        color: rgb(240, 66, 182);
+        font-weight: bold;
+        font-size: 2rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 10vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .time {
+        border: 4px solid rgb(240, 82, 34);
+        color: black;
+        background-color: gold;
+        right: 10vw;
+      }
     </style>
   </head>
   <body>
@@ -43,21 +64,20 @@
         wall.style.height = `${h}vh`;
         wall.style.marginTop = `${y}vh`;
         wall.style.marginLeft = `${x}vw`;
-        wall.style.border = "4px solid tomato";
         wall.className = type;
         const gamePlane = document.querySelector(".gamePlane");
         gamePlane.append(wall);
       };
 
       const stage = [
-        [4, 23, 0, 0, "start"],
+        [4, 15, 0, 0, "start"],
         [20, 8, 0, 0],
         [10, 8, 0, 15],
         [5, 30, 20, 0],
         [5, 40, 10, 15],
         [20, 10, 15, 45],
-        [10, 13, 25, 17],
-        [5, 16, 30, 30, "meta"],
+        [10, 10, 25, 20],
+        [5, 15, 30, 30, "meta"],
       ];
 
       const makeStage = (stage) => {
@@ -73,6 +93,13 @@
         initButtons() {
           this.buttons.start = this.gamePlane.querySelector(".start");
           this.buttons.meta = this.gamePlane.querySelector(".meta");
+          this.buttons.walls = (func = () => {}) => {
+            for (const w of this.gamePlane.querySelectorAll(".wall")) {
+              w.onmouseover = () => {
+                func();
+              };
+            }
+          };
         },
         init() {
           makeStage(stage);
@@ -80,20 +107,76 @@
           this.buttons.start.onclick = () => {
             this.start();
           };
+          this.lives.init();
+          this.time.init();
         },
         start() {
           console.log("Game started");
           this.buttons.start.onclick = () => {};
+          this.buttons.walls(() => {
+            game.end(false);
+            this.lives.decrease();
+          });
           this.buttons.meta.onmouseover = () => {
-            this.end();
+            this.end(true);
           };
+          this.time.valueRestore();
+          this.time.start();
         },
-        end() {
+        end(boolean = false) {
           console.log("Game ended");
           this.buttons.meta.onmouseover = () => {};
           this.buttons.start.onclick = () => {
             this.start();
+            this.lives.valueRestore();
           };
+
+          boolean ? console.log("WYGRAŁEŚ!") : console.log("PRZEGRAŁEŚ!");
+          clearInterval(this.time.interval);
+        },
+        lives: {
+          dom: document.createElement("div"),
+          init() {
+            this.valueRestore();
+            this.dom.className = "lives";
+            this.dom.innerHTML = `${this.value}	&#10084;`;
+            game.gamePlane.append(this.dom);
+          },
+          decrease() {
+            if (this.value > 0) {
+              this.value--;
+              this.dom.innerHTML = `${this.value}	&#10084;`;
+            } else {
+              game.end(false);
+            }
+          },
+
+          valueRestore(v = 3) {
+            this.value = v;
+            this.dom.innerHTML = `${this.value}	&#10084;`;
+          },
+        },
+        time: {
+          dom: document.createElement("div"),
+          init() {
+            this.valueRestore();
+            this.dom.className = "time";
+            this.dom.innerHTML = `${this.value} &#128336;`;
+            game.gamePlane.append(this.dom);
+          },
+          valueRestore(v = 5) {
+            this.value = v;
+            this.dom.innerHTML = `${this.value} &#128336;`;
+          },
+          start() {
+            this.interval = setInterval(() => {
+              this.value--;
+              this.valueRestore(this.value);
+              if (this.value == 0) {
+                game.end(false);
+              }
+            }, 1000);
+          },
         },
       };
 
