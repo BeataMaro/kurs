@@ -131,7 +131,11 @@
         init() {
           this.gamePlane.innerHTML = "";
           this.popup.init();
-          this.popup.update("Welcome", "In this game, you must[...]", ["yes"]);
+          this.popup.update(
+            "Welcome",
+            "In this game, you must reach the finish line without touching the walls",
+            ["yes"]
+          );
           this.makeStage(this.stages[this.stage]);
           this.initButtons();
           this.buttons.start.onclick = () => {
