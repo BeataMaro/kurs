@@ -13,19 +13,18 @@
         margin: 0;
       }
       .gamePlane {
-        border: 2px dashed red;
+        border: 2px dashed slateblue;
         width: 80vw;
         height: 80vh;
         margin: 10vh auto;
         position: relative;
       }
-      .wall,
-      .start,
-      .meta {
+
+      .gamePlane div {
         position: absolute;
       }
       .wall {
-        background-color: rgba(225, 0, 255, 0.198);
+        background-color: tomato;
       }
       .start {
         background-color: green;
@@ -58,16 +57,47 @@
         [5, 40, 10, 15],
         [20, 10, 15, 45],
         [10, 13, 25, 17],
-        [5, 38, 30, 17, "meta"],
+        [5, 16, 30, 30, "meta"],
       ];
 
       const makeStage = (stage) => {
-        for (const block of stage) {
-          makeWall(block[0], block[1], block[2], block[3], block[4]);
-        }
+        stage.map((el) => makeWall(el[0], el[1], el[2], el[3], el[4]));
+        // for (const block of stage) {
+        //   makeWall(block[0], block[1], block[2], block[3], block[4]);
+        // }
       };
 
-      makeStage(stage);
+      const game = {
+        gamePlane: document.querySelector(".gamePlane"),
+        buttons: {},
+        initButtons() {
+          this.buttons.start = this.gamePlane.querySelector(".start");
+          this.buttons.meta = this.gamePlane.querySelector(".meta");
+        },
+        init() {
+          makeStage(stage);
+          this.initButtons();
+          this.buttons.start.onclick = () => {
+            this.start();
+          };
+        },
+        start() {
+          console.log("Game started");
+          this.buttons.start.onclick = () => {};
+          this.buttons.meta.onmouseover = () => {
+            this.end();
+          };
+        },
+        end() {
+          console.log("Game ended");
+          this.buttons.meta.onmouseover = () => {};
+          this.buttons.start.onclick = () => {
+            this.start();
+          };
+        },
+      };
+
+      game.init();
     </script>
   </body>
 </html>
