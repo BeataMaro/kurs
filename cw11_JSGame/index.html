@@ -53,47 +53,74 @@
         background-color: gold;
         right: 10vw;
       }
+      .popup {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .popup h2 {
+        margin: 0;
+      }
+      .popup p {
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .popup span button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+      }
     </style>
   </head>
   <body>
     <div class="gamePlane"></div>
     <script>
-      const makeWall = (w, h, x, y, type = "wall") => {
-        const wall = document.createElement("div");
-        wall.style.width = `${w}vw`;
-        wall.style.height = `${h}vh`;
-        wall.style.marginTop = `${y}vh`;
-        wall.style.marginLeft = `${x}vw`;
-        wall.className = type;
-        const gamePlane = document.querySelector(".gamePlane");
-        gamePlane.append(wall);
-      };
-
-      const stage = [
-        [4, 15, 0, 0, "start"],
-        [20, 8, 0, 0],
-        [10, 8, 0, 15],
-        [5, 30, 20, 0],
-        [5, 40, 10, 15],
-        [20, 10, 15, 45],
-        [10, 10, 25, 20],
-        [5, 15, 30, 30, "meta"],
-      ];
-
-      const makeStage = (stage) => {
-        stage.map((el) => makeWall(el[0], el[1], el[2], el[3], el[4]));
-        // for (const block of stage) {
-        //   makeWall(block[0], block[1], block[2], block[3], block[4]);
-        // }
-      };
-
       const game = {
         gamePlane: document.querySelector(".gamePlane"),
+        makeWall(w, h, x, y, type = "wall") {
+          const wall = document.createElement("div");
+          wall.style.width = `${w}vw`;
+          wall.style.height = `${h}vh`;
+          wall.style.marginTop = `${y}vh`;
+          wall.style.marginLeft = `${x}vw`;
+          wall.className = type;
+          const gamePlane = document.querySelector(".gamePlane");
+          gamePlane.append(wall);
+        },
+        stage: 0,
+        stages: [
+          //pierwsza plansza
+          [
+            [4, 15, 0, 0, "start"],
+            [20, 8, 0, 0],
+            [10, 8, 0, 15],
+            [5, 30, 20, 0],
+            [5, 40, 10, 15],
+            [20, 10, 15, 45],
+            [10, 10, 25, 20],
+            [5, 15, 30, 30, "meta"],
+          ],
+        ],
+
+        makeStage(stage) {
+          stage.map((el) => this.makeWall(el[0], el[1], el[2], el[3], el[4]));
+          // for (const block of stage) {
+          //   makeWall(block[0], block[1], block[2], block[3], block[4]);
+          // }
+        },
+
         buttons: {},
         initButtons() {
           this.buttons.start = this.gamePlane.querySelector(".start");
           this.buttons.meta = this.gamePlane.querySelector(".meta");
-          this.buttons.walls = (func = () => {}) => {
+          game.buttons.walls = (func = () => {}) => {
             for (const w of this.gamePlane.querySelectorAll(".wall")) {
               w.onmouseover = () => {
                 func();
@@ -102,36 +129,42 @@
           };
         },
         init() {
-          makeStage(stage);
+          this.gamePlane.innerHTML = "";
+          this.popup.init();
+          this.popup.update("Welcome", "In this game, you must[...]", ["yes"]);
+          this.makeStage(this.stages[this.stage]);
           this.initButtons();
           this.buttons.start.onclick = () => {
-            this.start();
+            game.start();
           };
           this.lives.init();
           this.time.init();
         },
         start() {
           console.log("Game started");
+          this.lives.valueRestore();
           this.buttons.start.onclick = () => {};
           this.buttons.walls(() => {
-            game.end(false);
-            this.lives.decrease();
+            game.lives.decrease();
           });
           this.buttons.meta.onmouseover = () => {
-            this.end(true);
+            game.end(true);
           };
           this.time.valueRestore();
           this.time.start();
         },
         end(boolean = false) {
           console.log("Game ended");
-          this.buttons.meta.onmouseover = () => {};
           this.buttons.start.onclick = () => {
             this.start();
-            this.lives.valueRestore();
           };
-
-          boolean ? console.log("WYGRAŁEŚ!") : console.log("PRZEGRAŁEŚ!");
+          this.buttons.meta.onmouseover = () => {};
+          this.buttons.walls();
+          boolean
+            ? console.log("WYGRAŁEŚ!") &&
+              this.popup.update("YOU WIN", "What's next?", ["again"])
+            : console.log("PRZEGRAŁEŚ!") &&
+              this.popup.update("YOU LOSE", "What's next?", ["again"]);
           clearInterval(this.time.interval);
         },
         lives: {
@@ -177,6 +210,52 @@
               }
             }, 1000);
           },
+        },
+        popup: {
+          dom: document.createElement("div"),
+          init() {
+            game.gamePlane.append(this.dom);
+            this.dom.className = "popup";
+            this.title = document.createElement("h2");
+            this.desc = document.createElement("p");
+            this.buttons = document.createElement("span");
+            this.dom.append(this.title);
+            this.dom.append(this.desc);
+            this.dom.append(this.buttons);
+          },
+          close() {
+            this.dom.style.display = "none";
+          },
+          update(title = "", desc = "", buttons = []) {
+            this.title.innerHTML = title;
+            this.desc.innerHTML = desc;
+            this.buttons.innerHTML = "";
+            for (const bInfo of this.butts) {
+              if (buttons.includes(bInfo[0])) {
+                const bt = document.createElement("button");
+                bt.innerHTML = bInfo[1];
+                bt.onclick = bInfo[2];
+                this.buttons.append(bt);
+              }
+            }
+            this.dom.style.display = "flex";
+          },
+          butts: [
+            [
+              "again",
+              "Play again",
+              () => {
+                game.popup.close();
+              },
+            ],
+            [
+              "yes",
+              "YES",
+              () => {
+                game.popup.close();
+              },
+            ],
+          ],
         },
       };
 
